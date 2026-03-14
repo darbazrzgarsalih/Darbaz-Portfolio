@@ -11,20 +11,13 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
   title: "DevDarbo | PERSONAL PORTFOLIO",
   icons: {
-    icon: "/icon.jpg",
-    shortcut: "/shortcut-icon.jpg",
-    apple: "/me.jpg"
+    icon: "/me.jpg",
   }
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={cn("font-sans", outfit.variable)}>
-      <link rel="icon" type="image/svg+xml" href="https://darbodev.vercel.app/assets/me-Dv2SGOg_.jpg" />
       <body className="antialiased min-h-screen flex flex-col">
         <ThemeProvider>
           <TopNavbar />

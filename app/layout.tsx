@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/landing/bottom-navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import TopNavbar from "@/components/landing/top-navbar";
 import BottomNavbar from "@/components/landing/bottom-navbar";
@@ -20,6 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cn("font-sans", outfit.variable)}>
+      <link rel="icon" type="image/svg+xml" href="https://darbodev.vercel.app/assets/me-Dv2SGOg_.jpg" />
       <body className="antialiased min-h-screen flex flex-col">
         <ThemeProvider>
           <TopNavbar />

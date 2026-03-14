@@ -10,6 +10,11 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "DevDarbo | PERSONAL PORTFOLIO",
+  icons: {
+    icon: "/icon.jpg",
+    shortcut: "/shortcut-icon.jpg",
+    apple: "/me.jpg"
+  }
 };
 
 export default function RootLayout({

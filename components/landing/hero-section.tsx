@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "../ui/button";
 import { RiNextjsLine, RiNodejsLine, RiReactjsLine, RiTailwindCssLine } from "react-icons/ri";
 import { DiMongodb } from "react-icons/di";
-
+import { motion } from "framer-motion";
 function HeroSection() {
 
     const handleScrollProjects = () => {
@@ -14,7 +14,12 @@ function HeroSection() {
         document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
     };
     return (
-        <section id="home" className="min-h-screen w-full flex p-4 flex-col lg:flex-row justify-between items-center gap-10 px-20 pt-32 border-b border-muted/80">
+        <motion.section 
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            whileInView={{ opacity: 1, y: 0 }}
+        id="home" className="min-h-screen w-full flex p-4 flex-col lg:flex-row justify-between items-center gap-10 px-20 pt-32 border-b border-muted/80">
             <div className="flex flex-col gap-1 max-w-xl">
                 <div>
                     <Badge variant={'outline'} className="flex items-center gap-1 w-fit mb-3">
@@ -65,7 +70,7 @@ function HeroSection() {
                     alt="Darbaz"
                 />
             </div>
-        </section>
+        </motion.section>
     );
 }
 

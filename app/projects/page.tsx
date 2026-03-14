@@ -1,7 +1,8 @@
+"use client"
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { ExternalLink, FolderGit } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { FolderGit } from "lucide-react";
+import { motion } from "framer-motion";
 
 function Projects() {
     const projects = [
@@ -38,7 +39,13 @@ function Projects() {
     ];
 
     return (
-        <section id="projects" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
+        <motion.section
+            initial={{ opacity: 0, y: -150 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            id="projects" 
+            className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
             <div className="text-center space-y-3">
                 <h2 className="text-4xl md:text-5xl font-thin">
                     Projects
@@ -95,13 +102,13 @@ function Projects() {
                                     <FolderGit size={13} />
                                     <span>Full Stack</span>
                                 </div>
-                           
+
                             </div>
                         </div>
                     </Card>
                 ))}
             </div>
-        </section>
+        </motion.section>
     );
 }
 

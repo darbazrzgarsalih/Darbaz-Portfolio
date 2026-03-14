@@ -1,6 +1,9 @@
+"use client"
+
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Layout, Server, Layers } from "lucide-react";
+import { motion } from 'framer-motion';
 
 function Services() {
     const services = [
@@ -31,7 +34,12 @@ function Services() {
     ];
 
     return (
-        <section id="services" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
+        <motion.section
+            initial={{ opacity: 0, y: -150 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            id="services" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
             <div className="text-center space-y-3">
                 <Badge variant="outline" className="text-xs tracking-widest lowercase">What I offer</Badge>
                 <h2 className="text-4xl md:text-5xl font-thin">
@@ -86,7 +94,7 @@ function Services() {
                     );
                 })}
             </div>
-        </section>
+        </motion.section>
     );
 }
 

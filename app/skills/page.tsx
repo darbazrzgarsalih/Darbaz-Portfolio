@@ -1,4 +1,6 @@
+"use client"
 import { Badge } from "@/components/ui/badge";
+import { motion } from 'framer-motion';
 import {
     SiHtml5, SiCss, SiTailwindcss, SiJavascript,
     SiReact, SiNextdotjs, SiNodedotjs, SiMongodb,
@@ -25,10 +27,15 @@ function Skills() {
     ];
 
     return (
-        <section id="skills" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
+        <motion.section
+            initial={{ opacity: 0, y: -150 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            id="skills" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
             <div className="text-center space-y-3">
                 <h2 className="text-4xl md:text-5xl font-thin">
-                   Skills
+                    Skills
                 </h2>
                 <p className="text-muted-foreground max-w-md mx-auto text-sm">
                     Technologies I use to build fast, scalable, and modern web applications.
@@ -51,7 +58,7 @@ function Skills() {
                     );
                 })}
             </div>
-        </section>
+        </motion.section>
     );
 }
 

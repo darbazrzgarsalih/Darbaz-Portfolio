@@ -8,6 +8,7 @@ import { SiGithub, } from "react-icons/si";
 import { Mail, MapPin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { motion } from 'framer-motion';
 
 const EMAILJS_SERVICE_ID = "service_dwfh32l";  
 const EMAILJS_TEMPLATE_ID = "template_0wdnw8s"; 
@@ -51,7 +52,12 @@ function Contact() {
     ];
 
     return (
-        <section id="contact" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
+        <motion.section 
+            initial={{ opacity: 0, y: -150 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+        id="contact" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
 
             <div className="text-center space-y-3">
                 <Badge variant="outline" className="text-xs tracking-widest uppercase">Get in touch</Badge>
@@ -165,7 +171,7 @@ function Contact() {
                 </div>
 
             </div>
-        </section>
+        </motion.section>
     );
 }
 

@@ -3,6 +3,7 @@
 import { SiGithub,  } from "react-icons/si";
 import { Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { motion } from 'framer-motion';
 
 function Footer() {
     const handleScroll = (id: string) => {
@@ -23,7 +24,12 @@ function Footer() {
     ];
 
     return (
-        <footer className="w-full border-t border-muted/80 bg-muted/5 px-6 py-12">
+        <motion.footer 
+            initial={{ opacity: 0, y: -150 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+        className="w-full border-t border-muted/80 bg-muted/5 px-6 py-12">
             <div className="max-w-5xl mx-auto flex flex-col gap-10">
 
                 <div className="flex flex-col md:flex-row justify-center items-start gap-8">
@@ -85,7 +91,7 @@ function Footer() {
                 </div>
 
             </div>
-        </footer >
+        </motion.footer>
     );
 }
 

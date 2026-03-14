@@ -11,7 +11,9 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
   title: "DevDarbo | PERSONAL PORTFOLIO",
   icons: {
-    icon: "/me.jpg",
+    icon: "/me.ico",
+    shortcut: "/me.ico", 
+    apple: "/apple-touch-icon.png",
   }
 };
 

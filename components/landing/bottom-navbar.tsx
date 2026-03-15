@@ -47,7 +47,7 @@ function BottomNavbar() {
 
     return (
         <div className="fixed bottom-4 left-0 right-0 z-50 flex justify-center pointer-events-none">
-            <div className="pointer-events-auto overflow-scroll bg-muted/40 dark:bg-muted/5 backdrop-blur-xs w-2.5/3 md:w-0.5/4 border border-muted/30 rounded-full p-1 shadow-lg">
+            <div className="pointer-events-auto overflow-scroll bg-muted/40 dark:bg-muted/40 backdrop-blur-md w-2.5/3 md:w-0.5/4 border border-muted/30 rounded-full px-1 py-2 flex items-center  shadow-lg">
                 <div className="flex gap-2 items-center">
                     {navItems.map((item) => {
                         const Icon = item.icon;

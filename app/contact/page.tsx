@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SiGithub, } from "react-icons/si";
-import { Mail, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, MapPin, Send, Loader2, Loader } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from 'framer-motion';
 
-const EMAILJS_SERVICE_ID = "service_dwfh32l";  
-const EMAILJS_TEMPLATE_ID = "template_0wdnw8s"; 
+const EMAILJS_SERVICE_ID = "service_6gt51qg";  
+const EMAILJS_TEMPLATE_ID = "template_r3of9h6"; 
 const EMAILJS_PUBLIC_KEY = "u4QIWtJeFl9QUm4y0";   
 
 function Contact() {
@@ -34,13 +34,13 @@ function Contact() {
                     name: form.name,      
                     email: form.email, 
                     message: form.message,
-                    title: `Message from ${form.name}`, 
                 },
                 EMAILJS_PUBLIC_KEY
             );
             setStatus("sent");
             setForm({ name: "", email: "", message: "" });
         } catch (err) {
+            alert(JSON.stringify(err));
             console.error(err);
             setStatus("error");
         }
@@ -156,8 +156,8 @@ function Contact() {
                             <Button type="submit" disabled={status === "loading"} className="w-full gap-2">
                                 {status === "loading" ? (
                                     <>
-                                        <Loader2 size={15} className="animate-spin" />
-                                        Sending...
+                                        <Loader size={15} className="animate-spin" />
+                                        Be patient
                                     </>
                                 ) : (
                                     <>

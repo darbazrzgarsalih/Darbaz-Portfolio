@@ -9,7 +9,7 @@ function TopNavbar() {
     };
 
     return (
-        <nav className="fixed w-full top-0 z-50 right-0 left-0 flex justify-between bg-muted/10 backdrop-blur-md items-center py-4 px-5 border-b border-muted/80">
+        <nav className="fixed w-full top-0 z-50 right-0 left-0 flex justify-between bg-muted/5 backdrop-blur-lg items-center py-4 px-5 border-b border-muted/80">
             <div className="flex items-center gap-1">
                 <Avatar>
                     <AvatarImage sizes="20 40" src={'https://darbodev.vercel.app/assets/me-Dv2SGOg_.jpg'} />

@@ -58,7 +58,7 @@ function BottomNavbar() {
                                 onClick={() => handleScroll(item.to)}
                                 className={cn(
                                     "flex cursor-pointer flex-col text-xs items-center rounded-full py-1 px-3 transition-all duration-300 hover:bg-muted/50 hover:scale-105",
-                                    isActive && "bg-muted/50 backdrop-blur-xl"
+                                    isActive && "bg-white/10 backdrop-blur-xl"
                                 )}
                             >
                                 <Icon size={20} />

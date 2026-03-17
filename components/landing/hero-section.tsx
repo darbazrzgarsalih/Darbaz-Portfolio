@@ -37,7 +37,7 @@ function HeroSection() {
                 </div>
 
                 <p className="text-muted-foreground mb-5 tracking-wide">
-                    I'm Darbaz, a full-stack MERN developer who loves building fast, scalable web applications. I work mainly with Next.js, React, and Tailwind CSS, turning ideas into clean, efficient digital products. Minimal UI, solid architecture, and code that actually solves problems.
+                    I'm Darbaz, a full-stack MERN developer who loves building fast, scalable web applications. I work mainly with Next.js, React, and Tailwind CSS, turning ideas into clean, efficient digital products. Minimal UI, solid architecture, and code that actuallly solves problems.
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-5 items-center">

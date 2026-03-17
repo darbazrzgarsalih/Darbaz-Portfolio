@@ -45,14 +45,14 @@ function Footer() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <span className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">
+                        <span className="text-md uppercase tracking-widest font-bold text-muted-foreground mb-1">
                             Navigation
                         </span>
                         {links.map((link) => (
                             <button
                                 key={link.to}
                                 onClick={() => handleScroll(link.to)}
-                                className="text-sm text-muted-foreground hover:text-foreground transition-colors text-left"
+                                className="text-sm cursor-pointer text-muted-foreground hover:text-foreground transition-colors text-left"
                             >
                                 {link.label}
                             </button>
@@ -60,7 +60,7 @@ function Footer() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <span className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-1">
+                        <span className="text-md font-bold uppercase tracking-widest text-muted-foreground  mb-1">
                             Connect
                         </span>
                         {socials.map((s) => {

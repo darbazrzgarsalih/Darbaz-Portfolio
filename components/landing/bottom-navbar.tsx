@@ -75,17 +75,13 @@ function BottomNavbar() {
                             )}
                         >
                             {isActive && (
-                                <span className="absolute inset-0 bg-white/20 dark:bg-white/10 rounded-full blur-sm -z-10" />
+                                <span className="absolute inset-0 bg-white/20 dark:bg-white/10 rounded-full blur-md -z-10" />
                             )}
 
                             <Icon size={18} className={cn("transition-transform", isActive && "mb-0.5")} />
+                            <span className=" text-[10px] font-medium overflow-hidden transition-all duration-300,">{item.label}</span>
 
-                            <span className={cn(
-                                "text-[10px] font-medium overflow-hidden transition-all duration-300",
-                                isActive ? "max-h-4 opacity-100" : "max-h-0 opacity-0"
-                            )}>
-                                {item.label}
-                            </span>
+                          
                         </button>
                     );
                 })}
@@ -95,3 +91,6 @@ function BottomNavbar() {
 }
 
 export default BottomNavbar;
+
+
+

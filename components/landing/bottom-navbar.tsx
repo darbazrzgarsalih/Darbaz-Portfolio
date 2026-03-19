@@ -59,7 +59,7 @@ function BottomNavbar() {
 
     return (
         <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-            <nav className="pointer-events-auto flex items-center gap-1 p-2 bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-full shadow-2xl transition-all duration-500 hover:border-white/40">
+            <nav className="pointer-events-auto flex items-center gap-1 p-2 bg-white/10 dark:bg-muted/30 backdrop-blur-sm border border-white/20 dark:border-white/10 rounded-full shadow-2xl transition-all duration-500 hover:border-white/40">
                 {navItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = activeSection === item.id;
@@ -75,7 +75,7 @@ function BottomNavbar() {
                             )}
                         >
                             {isActive && (
-                                <span className="absolute inset-0 bg-white/20 dark:bg-white/10 rounded-full blur-md -z-10" />
+                                <span className="absolute inset-0 bg-white/20 dark:bg-white/10 rounded-full blur-sm -z-10" />
                             )}
 
                             <Icon size={18} className={cn("transition-transform", isActive && "mb-0.5")} />

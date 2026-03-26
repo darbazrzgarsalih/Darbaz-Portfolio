@@ -5,7 +5,9 @@ import {
     SiHtml5, SiCss, SiTailwindcss, SiJavascript,
     SiReact, SiNextdotjs, SiNodedotjs, SiMongodb,
     SiExpress, SiGit, SiGithub, SiVercel,
-    SiPostman, SiRender
+    SiPostman, SiRender,
+    SiPostgresql,
+    SiSupabase
 } from "react-icons/si";
 
 function Skills() {
@@ -24,6 +26,8 @@ function Skills() {
         { name: "Vercel", icon: SiVercel, color: "text-foreground" },
         { name: "Render", icon: SiRender, color: "text-indigo-400" },
         { name: "Postman", icon: SiPostman, color: "text-orange-500" },
+        { name: "PostgreSQL", icon: SiPostgresql, color: "text-[#0064a5]" },
+        { name: "Supabase", icon: SiSupabase, color: "text-[#34B27B]" }
     ];
 
     return (
@@ -58,6 +62,7 @@ function Skills() {
                     );
                 })}
             </div>
+                
         </motion.section>
     );
 }

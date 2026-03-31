@@ -18,9 +18,9 @@ function TypingIndicator() {
     return (
         <div className="flex justify-start">
             <div className="bg-gray-800 rounded-xl rounded-bl-none px-4 py-3 flex items-center gap-1">
-                <span className="w-1 h-1  bg-gradient-to-br from-primary/50 to-green-300/80  rounded-full animate-bounce [animation-delay:0ms]" />
-                <span className="w-1 h-1  bg-gradient-to-br from-primary/50 to-green-300/80 rounded-full animate-bounce [animation-delay:150ms]" />
-                <span className="w-1 h-1  bg-gradient-to-br from-primary/50 to-green-300/80 rounded-full animate-bounce [animation-delay:300ms]" />
+                <span className="w-1 h-1 bg-gradient-to-br from-primary/50 to-green-300/80 rounded-full animate-bounce [animation-delay:0ms]" />
+                <span className="w-1 h-1 bg-gradient-to-br from-primary/50 to-green-300/80 rounded-full animate-bounce [animation-delay:150ms]" />
+                <span className="w-1 h-1 bg-gradient-to-br from-primary/50 to-green-300/80 rounded-full animate-bounce [animation-delay:300ms]" />
             </div>
         </div>
     );
@@ -38,7 +38,8 @@ export default function ChatBot() {
     const [loading, setLoading] = useState(false);
     const [tooltipIndex, setTooltipIndex] = useState(0);
     const [tooltipVisible, setTooltipVisible] = useState(true);
-    const messagesEndRef = useRef(null);
+
+    const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         if (isOpen) return;
@@ -78,7 +79,7 @@ export default function ChatBot() {
         }
     };
 
-    const handleKeyDown = (e: any) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
@@ -116,14 +117,10 @@ export default function ChatBot() {
 
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed z-50 w-[52px] h-[52px] rounded-full  bg-gradient-to-br from-primary/50 to-green-300/80 flex items-center justify-center shadow shadow-zinc-800 transition-transform duration-200 hover:scale-110 border-none cursor-pointer"
+                className="fixed z-50 w-[52px] h-[52px] rounded-full bg-gradient-to-br from-green-500/50 to-green-300/80 flex items-center justify-center shadow shadow-zinc-800 transition-transform duration-200 hover:scale-110 border-none cursor-pointer"
                 style={{ bottom: "90px", right: "20px" }}
             >
-                {isOpen ? (
-                    <CgClose />
-                ) : (
-                    <LuMessageCircleMore />
-                )}
+                {isOpen ? <CgClose className="text-white text-xl" /> : <LuMessageCircleMore className="text-white text-xl" />}
             </button>
 
             {isOpen && (
@@ -132,12 +129,12 @@ export default function ChatBot() {
                     style={{ bottom: "155px", right: "20px" }}
                 >
                     <div className="flex items-center gap-3 px-4 py-3 bg-[#0f0f0f] border-b border-zinc-800">
-                        <div className="w-8 h-8 rounded-full  bg-gradient-to-br from-primary/50 to-green-300/80 flex items-center justify-center text-white text-sm font-bold shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500/50 to-green-300/80 flex items-center justify-center text-white text-sm font-bold shrink-0">
                             DR
                         </div>
                         <div>
                             <p className="text-white text-sm font-semibold m-0">Darbo's Assistant</p>
-                            <p className="text-green-400 bg-clip-text text-[11px] m-0">● Online</p>
+                            <p className="text-green-400 text-[11px] m-0">● Online</p>
                         </div>
                     </div>
 
@@ -146,7 +143,7 @@ export default function ChatBot() {
                             <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                                 <div className={`max-w-[80%] px-3 py-2 text-[13px] leading-relaxed text-white
                                     ${msg.role === "user"
-                                        ? "bg-gradient-to-r from-primary/90 to-green-300/80 rounded-xl rounded-br-none"
+                                        ? "bg-gradient-to-r from-green-600/90 to-green-400/80 rounded-xl rounded-br-none"
                                         : "bg-zinc-900 rounded-xl rounded-bl-none"
                                     }`}>
                                     {msg.content}
@@ -163,15 +160,15 @@ export default function ChatBot() {
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder="Ask me anything..."
-                            className="flex-1 bg-[#1a1a1a] text-white text-[13px] px-4 py-2 rounded-full border border-zinc-800 outline-none placeholder-zinc-500"
+                            className="flex-1 bg-[#1a1a1a] text-white text-[13px] px-4 py-2 rounded-full border border-zinc-800 outline-none placeholder-zinc-500 focus:border-green-800"
                         />
                         <button
                             onClick={sendMessage}
                             disabled={loading || !input.trim()}
                             className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200 border-none
-                                ${input.trim() ? " bg-gradient-to-br from-primary/50 to-green-300/80 cursor-pointer" : "bg-zinc-800 cursor-default"}`}
+                                ${input.trim() ? "bg-gradient-to-br from-green-500/50 to-green-300/80 cursor-pointer" : "bg-zinc-800 cursor-default"}`}
                         >
-                            <FaArrowUp />
+                            <FaArrowUp className="text-white" />
                         </button>
                     </div>
                 </div>

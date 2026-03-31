@@ -24,29 +24,29 @@ export async function POST(req: Request) {
         const { messages } = await req.json();
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-1.5-flash",
+            model: "gemini-2.5-flash",
             systemInstruction: SYSTEM_PROMPT,
         });
 
-        const history = messages
-            .filter((msg: any, index: number) => {
-                if (index === 0 && msg.role === "assistant") return false;
-                return true;
-            })
-            .slice(0, -1)
-            .map((msg: any) => ({
-                role: msg.role === "assistant" ? "model" : "user",
-                parts: [{ text: msg.content }]
-            }));
+        const chatMessages = messages.map((msg: any) => ({
+            role: msg.role === "assistant" ? "model" : "user",
+            parts: [{ text: msg.content }]
+        }));
+
+        const lastMessage = chatMessages.pop();
+
+        let history = chatMessages;
+        if (history.length > 0 && history[0].role === "model") {
+            history.shift();
+        }
 
         const chat = model.startChat({ history });
-        const lastMessage = messages[messages.length - 1].content;
-        const result = await chat.sendMessage(lastMessage);
+        const result = await chat.sendMessage(lastMessage.parts[0].text);
         const text = result.response.text();
 
         return Response.json({ reply: text });
-    } catch (error) {
-        console.error('Gemini API Error:', error);
-        return Response.json({ reply: "Somethin went wrong" }, { status: 500 });
+    } catch (error: any) {
+        console.error('Gemini API Error:', error.message || error);
+        return Response.json({ reply: "Something went wroncg" }, { status: 500 });
     }
 }

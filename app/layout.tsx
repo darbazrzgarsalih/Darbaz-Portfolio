@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import TopNavbar from "@/components/landing/top-navbar";
 import BottomNavbar from "@/components/landing/bottom-navbar";
+import ChatBot from "@/components/ChatBot";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <TopNavbar />
           {children}
+          <ChatBot />
           <BottomNavbar />
         </ThemeProvider>
       </body>

@@ -29,8 +29,8 @@ export async function POST(req: any) {
 
         const history = messages
             .slice(0, -1)
-            .filter((_, i) => i !== 0)
-            .map((msg) => ({
+            .filter((_: any, i: any) => i !== 0)
+            .map((msg: any) => ({
                 role: msg.role === "assistant" ? "model" : "user",
                 parts: [{ text: msg.content }]
             }))

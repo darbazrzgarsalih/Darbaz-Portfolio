@@ -78,7 +78,7 @@ export default function ChatBot() {
         }
     };
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: any) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
             sendMessage();

@@ -11,7 +11,7 @@ About Darbo:
 - Location: Erbil, Iraq
 - Portfolio: darboo.xyz
 - Skills: HTML, CSS, Javascript, React, Tailwind, Node, Express, MongoDB, NextJs, Supabase, PostgreSQL
-- Real client projects: HRMS & Payroll System, Institute Management System
+- Reacl client projects: HRMS & Payroll System, Institute Management System
 - Email: darborzgar7@gmail.com
 
 Rules:

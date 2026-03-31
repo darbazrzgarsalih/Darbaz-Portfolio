@@ -1,10 +1,9 @@
 export const runtime = "nodejs";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-console.log(genAI)
-const SYSTEM_PROMPT = `You are darbo's portfolio assisttant. Be friendly, short, and helpful.
+
+const SYSTEM_PROMPT = `You are darbo's portfolio assistant. Be friendly, short, and helpful.
 
 About Darbo:
 - Full name: Darbaz Rzgar Salih
@@ -12,7 +11,7 @@ About Darbo:
 - Location: Erbil, Iraq
 - Portfolio: darboo.xyz
 - Skills: HTML, CSS, Javascript, React, Tailwind, Node, Express, MongoDB, NextJs, Supabase, PostgreSQL
-- Reacl client projects: HRMS & Payroll SYstem, Institute Management System
+- Real client projects: HRMS & Payroll System, Institute Management System
 - Email: darborzgar7@gmail.com
 
 Rules:
@@ -20,16 +19,15 @@ Rules:
 - If asked about hiring, encourage them to contact Darbo
 - Never make up information`;
 
-export async function POST(req: any) {
+export async function POST(req: Request) {
     try {
         const { messages } = await req.json();
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash",
+            model: "gemini-2.0-flash",
             systemInstruction: SYSTEM_PROMPT,
         });
 
-        
         const history = messages
             .filter((msg: any, index: number) => {
                 if (index === 0 && msg.role === "assistant") return false;
@@ -41,17 +39,14 @@ export async function POST(req: any) {
                 parts: [{ text: msg.content }]
             }));
 
-        const chat = model.startChat({
-            history: history
-        });
-
+        const chat = model.startChat({ history });
         const lastMessage = messages[messages.length - 1].content;
         const result = await chat.sendMessage(lastMessage);
         const text = result.response.text();
 
         return Response.json({ reply: text });
     } catch (error) {
-        console.error('gemini error: ', error);
-        return Response.json({ reply: "Somethin went wrong" });
+        console.error('Gemini API Error:', error);
+        return Response.json({ reply: "Somethin went wrong" }, { status: 500 });
     }
 }

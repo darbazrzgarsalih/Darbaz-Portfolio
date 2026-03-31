@@ -1,7 +1,9 @@
+export const runtime = "nodejs";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "AIzaSyD3Qe5iUdhF19u3RushubViQNpn_KKPKaA");
 
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
+console.log(genAI)
 const SYSTEM_PROMPT = `You are darbo's portfolio assisttant. Be friendly, short, and helpful.
 
 About Darbo:
@@ -20,29 +22,36 @@ Rules:
 
 export async function POST(req: any) {
     try {
-        const { messages } = await req.json()
+        const { messages } = await req.json();
 
         const model = genAI.getGenerativeModel({
             model: "gemini-2.5-flash",
             systemInstruction: SYSTEM_PROMPT,
-        })
+        });
 
+        
         const history = messages
+            .filter((msg: any, index: number) => {
+                if (index === 0 && msg.role === "assistant") return false;
+                return true;
+            })
             .slice(0, -1)
-            .filter((_: any, i: any) => i !== 0)
             .map((msg: any) => ({
                 role: msg.role === "assistant" ? "model" : "user",
                 parts: [{ text: msg.content }]
-            }))
+            }));
 
-        const chat = model.startChat({ history })
+        const chat = model.startChat({
+            history: history
+        });
+
         const lastMessage = messages[messages.length - 1].content;
         const result = await chat.sendMessage(lastMessage);
-        const text = result.response.text()
+        const text = result.response.text();
 
-        return Response.json({ reply: text })
+        return Response.json({ reply: text });
     } catch (error) {
-        console.log('gemini error: ',error)
-        return Response.json({ reply: "Somethin went wrong" })
+        console.error('gemini error: ', error);
+        return Response.json({ reply: "Somethin went wrong" });
     }
 }

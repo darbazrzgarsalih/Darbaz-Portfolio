@@ -73,7 +73,7 @@ function HeroSection() {
                 <div className="flex gap-4 items-center">
                     <Button
                         onClick={handleScrollProjects}
-                        className="px-6 py-3 bg-primary text-white rounded-lg"
+                        className="px-6 py-3 bg-primary text-white rounded-md"
                     >
                         View Projects
                     </Button>
@@ -81,7 +81,7 @@ function HeroSection() {
                     <Button
                         onClick={handleScrollServices}
                         variant={'outline'}
-                        className="px-6 py-3 border rounded-lg"
+                        className="px-6 py-3 border rounded-sm"
                     >
                         See Services
                     </Button>

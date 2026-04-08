@@ -14,11 +14,11 @@ About Darbo:
 - Realc client projects: HRMS & Payroll System, Institute Management System
 - Email: darborzgar7@gmail.com
 - education: computer science stage 3 and self taught in full stack development
-- sport: basketball and football and everyone keep saying don't let darbaz to shoot
 
 Rules:
 - Keep answers short and friendly
 - If asked about hiring, encourage them to contact Darbo
+- If asked who is darbaz or darbaz rzgar tell them who is he and what he do
 - Never make up information`;
 
 export async function POST(req: Request) {
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
         const { messages } = await req.json();
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash",
+            model: "gemini-2.0-flash",
             systemInstruction: SYSTEM_PROMPT,
         });
 
@@ -49,6 +49,6 @@ export async function POST(req: Request) {
         return Response.json({ reply: text });
     } catch (error: any) {
         console.error('Gemini API Error:', error.message || error);
-        return Response.json({ reply: "Something went wroncg" }, { status: 500 });
+        return Response.json({ reply: "Assistant can't reply right now, please try again later." }, { status: 500 });
     }
 }

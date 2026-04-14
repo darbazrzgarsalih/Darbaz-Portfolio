@@ -5,8 +5,18 @@ import { Button } from "../ui/button";
 import { RiNextjsLine, RiNodejsLine, RiReactjsLine, RiSupabaseFill, RiTailwindCssLine } from "react-icons/ri";
 import { DiMongodb } from "react-icons/di";
 import { motion } from "framer-motion";
+import { BiDownArrow } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import { CgSpinner } from "react-icons/cg";
 
 function HeroSection() {
+
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleScrollProjects = () => {
         document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
@@ -15,6 +25,18 @@ function HeroSection() {
     const handleScrollServices = () => {
         document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
     };
+
+    if(loading) {
+        return (
+            <div className="min-h-screen w-full flex items-center justify-center bg-background">
+                <motion.div 
+                className="py-2 px-2 rounded-md bg-muted/20"
+                >
+                    <CgSpinner className="animate-spin"/>
+                </motion.div>
+            </div>
+        )
+    }
 
     return (
         <motion.section
@@ -55,7 +77,7 @@ function HeroSection() {
                 <div className="flex flex-wrap gap-2 mb-5 items-center text-lg">
                     <Badge variant={'outline'}><RiNextjsLine /></Badge>
                     <span className="text-muted">|</span>
-                    <Badge variant={'outline'}><RiSupabaseFill  /></Badge>
+                    <Badge variant={'outline'}><RiSupabaseFill /></Badge>
                     <span className="text-muted">|</span>
                     <Badge variant={'outline'}><RiReactjsLine /></Badge>
                     <span className="text-muted">|</span>
@@ -94,6 +116,12 @@ function HeroSection() {
                     src="https://darbodev.vercel.app/assets/me-Dv2SGOg_.jpg"
                     alt="Darbaz"
                 />
+            </div>
+
+            <div>
+                <Button onClick={handleScrollProjects} variant={'ghost'} className="animate-bounce font-mono flex gap-2 items-center">
+                   Scroll <BiDownArrow /> 
+                </Button>
             </div>
         </motion.section>
     );

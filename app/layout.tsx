@@ -20,7 +20,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn("font-sans", outfit.variable)}>
+    <html lang="en" className={cn("font-sans", outfit.variable)}
+    suppressHydrationWarning
+    >
       <body className="antialiased min-h-screen flex flex-col">
         <ThemeProvider>
           <TopNavbar />

@@ -11,9 +11,9 @@ import { motion } from 'framer-motion';
 import { CgSpinner } from "react-icons/cg";
 import { toast } from "sonner";
 
-const EMAILJS_SERVICE_ID = "service_6gt51qg";  
-const EMAILJS_TEMPLATE_ID = "template_r3of9h6"; 
-const EMAILJS_PUBLIC_KEY = "u4QIWtJeFl9QUm4y0";   
+const EMAILJS_SERVICE_ID = "service_6gt51qg";
+const EMAILJS_TEMPLATE_ID = "template_r3of9h6";
+const EMAILJS_PUBLIC_KEY = "u4QIWtJeFl9QUm4y0";
 
 function Contact() {
     const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -26,15 +26,15 @@ function Contact() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus("loading");
-        
+
 
         try {
             await emailjs.send(
                 EMAILJS_SERVICE_ID,
                 EMAILJS_TEMPLATE_ID,
                 {
-                    name: form.name,      
-                    email: form.email, 
+                    name: form.name,
+                    email: form.email,
                     message: form.message,
                 },
                 EMAILJS_PUBLIC_KEY
@@ -55,12 +55,12 @@ function Contact() {
     ];
 
     return (
-        <motion.section 
+        <motion.section
             initial={{ opacity: 0, y: -150 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-        id="contact" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
+            id="contact" className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80">
 
             <div className="text-center space-y-3">
                 <Badge variant="outline" className="text-xs tracking-widest uppercase">Get in touch</Badge>
@@ -75,7 +75,7 @@ function Contact() {
             <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10">
 
                 <div className="flex flex-col gap-6">
-                   
+
 
                     <div className="flex flex-col gap-4">
                         {info.map((item) => {
@@ -159,7 +159,7 @@ function Contact() {
                             <Button type="submit" disabled={status === "loading"} className="w-full gap-2">
                                 {status === "loading" ? (
                                     <>
-                                      <CgSpinner className="animate-spin"/>
+                                        <CgSpinner className="animate-spin" />
                                     </>
                                 ) : (
                                     <>

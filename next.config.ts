@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    turbo: {
-      root: '.',  
-    },
+  turbopack: {
+    root: '.',
   },
   allowedDevOrigins: ['192.168.1.9']
 };

@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import TopNavbar from "@/components/landing/top-navbar";
 import BottomNavbar from "@/components/landing/bottom-navbar";
 import ChatBot from "@/components/ChatBot";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="antialiased min-h-screen flex flex-col">
         <ThemeProvider>
+        <Toaster position="top-right"/>
           <TopNavbar />
           {children}
           <ChatBot />

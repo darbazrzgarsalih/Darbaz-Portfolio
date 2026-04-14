@@ -8,6 +8,8 @@ import { Mail, MapPin, Send, Loader } from "lucide-react";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from 'framer-motion';
+import { CgSpinner } from "react-icons/cg";
+import { toast } from "sonner";
 
 const EMAILJS_SERVICE_ID = "service_6gt51qg";  
 const EMAILJS_TEMPLATE_ID = "template_r3of9h6"; 
@@ -39,6 +41,7 @@ function Contact() {
             );
             setStatus("sent");
             setForm({ name: "", email: "", message: "" });
+            toast.success("Message has been sent successfully")
         } catch (err) {
             alert(JSON.stringify(err));
             console.error(err);
@@ -156,13 +159,11 @@ function Contact() {
                             <Button type="submit" disabled={status === "loading"} className="w-full gap-2">
                                 {status === "loading" ? (
                                     <>
-                                        <Loader size={15} className="animate-spin" />
-                                        Be patient
+                                      <CgSpinner className="animate-spin"/>
                                     </>
                                 ) : (
                                     <>
-                                        <Send size={15} />
-                                        Send Message
+                                        Reach Out
                                     </>
                                 )}
                             </Button>

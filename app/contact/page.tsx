@@ -25,6 +25,12 @@ function Contact() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (!form.email.trim() || !form.name.trim() || !form.message.trim()) {
+            toast.info('Please fill in all fields')
+            return
+        }
+
         setStatus("loading");
 
 
@@ -121,7 +127,6 @@ function Contact() {
                                     placeholder="Your name"
                                     value={form.name}
                                     onChange={handleChange}
-                                    required
                                     className="bg-muted/10 border-muted/50 focus:border-primary/40"
                                 />
                             </div>
@@ -133,7 +138,6 @@ function Contact() {
                                     placeholder="your@email.com"
                                     value={form.email}
                                     onChange={handleChange}
-                                    required
                                     className="bg-muted/10 border-muted/50 focus:border-primary/40"
                                 />
                             </div>
@@ -144,7 +148,6 @@ function Contact() {
                                     placeholder="Tell me about your project..."
                                     value={form.message}
                                     onChange={handleChange}
-                                    required
                                     rows={5}
                                     className="bg-muted/10 border-muted/50 focus:border-primary/40 resize-none"
                                 />

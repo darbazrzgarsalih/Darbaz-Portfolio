@@ -1,5 +1,6 @@
 "use client"
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import {
     SiHtml5, SiCss, SiTailwindcss, SiJavascript,
     SiReact, SiNextdotjs, SiNodedotjs, SiMongodb,
@@ -34,6 +35,51 @@ const SKILLS_DATA = [
 const CATEGORIES = ["Frontend", "Backend", "Full Stack", "Database", "Backend as a Service", "Version Control", "Deployment"];
 
 function Skills() {
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
+
+    if (loading) {
+        return (
+            <section className="min-h-screen w-full flex flex-col items-center gap-16 px-6 py-24 border-b border-muted/80 animate-pulse">
+
+                <div className="text-center space-y-3">
+                    <div className="w-52 h-10 bg-zinc-800 rounded-md mx-auto" />
+                    <div className="w-80 h-4 bg-zinc-800 rounded-md mx-auto" />
+                </div>
+
+                <div className="w-full max-w-4xl space-y-12">
+                    {Array.from({ length: 4 }).map((_, i) => (
+                        <div key={i} className="space-y-6">
+
+                            <div className="w-40 h-4 bg-zinc-800 rounded" />
+
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                {Array.from({ length: 8 }).map((_, j) => (
+                                    <div
+                                        key={j}
+                                        className="flex flex-col items-center justify-center gap-3 p-4 rounded-xl border border-muted/50 bg-muted/5 aspect-square"
+                                    >
+                                        <div className="w-8 h-8 bg-zinc-800 rounded" />
+
+                                        <div className="w-16 h-3 bg-zinc-800 rounded" />
+
+                                        <div className="w-12 h-2 bg-zinc-800 rounded" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        );
+    }
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 50 }}

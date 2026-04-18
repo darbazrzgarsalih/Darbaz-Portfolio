@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Send, Loader } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from 'framer-motion';
 import { CgSpinner } from "react-icons/cg";
@@ -16,6 +16,12 @@ const EMAILJS_TEMPLATE_ID = "template_r3of9h6";
 const EMAILJS_PUBLIC_KEY = "u4QIWtJeFl9QUm4y0";
 
 function Contact() {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
 
@@ -59,6 +65,52 @@ function Contact() {
         { icon: Mail, label: "Email", value: "darborzgar7@gmail.com", href: "mailto:darborzgar7@gmail.com" },
         { icon: MapPin, label: "Location", value: "Erbil, Iraq", href: null },
     ];
+
+
+    if (loading) {
+        return (
+            <section className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80 animate-pulse">
+
+                <div className="text-center space-y-3">
+                    <div className="w-32 h-6 bg-zinc-800 rounded-full mx-auto" />
+                    <div className="w-40 h-10 bg-zinc-800 rounded-md mx-auto" />
+                    <div className="w-80 h-4 bg-zinc-800 rounded-md mx-auto" />
+                </div>
+
+                <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10">
+
+                    <div className="flex flex-col gap-6">
+                        {Array.from({ length: 2 }).map((_, i) => (
+                            <div key={i} className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-zinc-800 rounded-xl" />
+                                <div className="space-y-2">
+                                    <div className="w-20 h-3 bg-zinc-800 rounded" />
+                                    <div className="w-40 h-4 bg-zinc-800 rounded" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="flex flex-col gap-4 p-6 rounded-2xl border border-muted/50 bg-muted/5">
+
+                        {Array.from({ length: 3 }).map((_, i) => (
+                            <div key={i} className="space-y-2">
+                                <div className="w-16 h-3 bg-zinc-800 rounded" />
+                                <div className="w-full h-10 bg-zinc-800 rounded-md" />
+                            </div>
+                        ))}
+
+                        <div className="space-y-2">
+                            <div className="w-20 h-3 bg-zinc-800 rounded" />
+                            <div className="w-full h-28 bg-zinc-800 rounded-md" />
+                        </div>
+
+                        <div className="w-full h-10 bg-zinc-800 rounded-md mt-2" />
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <motion.section

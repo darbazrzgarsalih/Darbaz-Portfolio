@@ -4,8 +4,15 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge";
 import { Layout, Server, Layers } from "lucide-react";
 import { motion } from 'framer-motion';
+import { useEffect, useState } from "react";
 
 function Services() {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1000);
+        return () => clearTimeout(timer);
+    }, []);
     const services = [
         {
             id: 1,
@@ -32,6 +39,45 @@ function Services() {
             stack: ["MERN", "REST APIs", "Auth"],
         },
     ];
+
+    if (loading) {
+        return (
+            <section className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80 animate-pulse">
+
+                <div className="text-center space-y-3">
+                    <div className="w-28 h-6 bg-zinc-800 rounded-full mx-auto" />
+                    <div className="w-40 h-10 bg-zinc-800 rounded-md mx-auto" />
+                    <div className="w-72 h-4 bg-zinc-800 rounded-md mx-auto" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                        <div key={i} className="p-6 rounded-xl border border-muted/50 bg-muted/5 space-y-4">
+
+                            <div className="flex justify-between items-center">
+                                <div className="w-10 h-10 bg-zinc-800 rounded-xl" />
+                                <div className="w-16 h-5 bg-zinc-800 rounded-full" />
+                            </div>
+
+                            <div className="w-40 h-5 bg-zinc-800 rounded" />
+
+                            <div className="space-y-2">
+                                <div className="w-full h-3 bg-zinc-800 rounded" />
+                                <div className="w-full h-3 bg-zinc-800 rounded" />
+                                <div className="w-5/6 h-3 bg-zinc-800 rounded" />
+                            </div>
+
+                            <div className="flex gap-2 pt-2">
+                                {Array.from({ length: 3 }).map((_, j) => (
+                                    <div key={j} className="w-14 h-5 bg-zinc-800 rounded-full" />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        );
+    }
 
     return (
         <motion.section

@@ -26,18 +26,52 @@ function HeroSection() {
         document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
     };
 
-    if(loading) {
+    if (loading) {
         return (
-            <div className="min-h-screen w-full flex items-center justify-center bg-background">
-                <motion.div 
-                className="py-2 px-2 rounded-md bg-muted/20"
-                >
-                    <CgSpinner className="animate-spin"/>
-                </motion.div>
-            </div>
-        )
-    }
+            <motion.section
+                className="min-h-screen w-full flex p-4 flex-col lg:flex-row justify-between items-center gap-10 px-20 pt-32 border-b border-muted/80 animate-pulse"
+            >
+                <div className="flex flex-col gap-4 max-w-xl w-full">
+                    <div className="w-40 h-4 bg-zinc-800 rounded-full" />
 
+                    <div className="space-y-3">
+                        <div className="w-72 h-8 bg-zinc-800 rounded-md" />
+                        <div className="w-60 h-8 bg-zinc-800 rounded-md" />
+                        <div className="w-48 h-6 bg-zinc-800 rounded-md" />
+                    </div>
+
+                    <div className="space-y-2 mt-2">
+                        <div className="w-full h-3 bg-zinc-800 rounded" />
+                        <div className="w-full h-3 bg-zinc-800 rounded" />
+                        <div className="w-5/6 h-3 bg-zinc-800 rounded" />
+                        <div className="w-4/6 h-3 bg-zinc-800 rounded" />
+                    </div>
+
+                    <div className="flex gap-2 mt-4">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <div key={i} className="w-10 h-8 bg-zinc-800 rounded-md" />
+                        ))}
+                    </div>
+
+                    <div className="w-80 h-3 bg-zinc-800 rounded mt-4" />
+
+                    <div className="flex gap-4 mt-4">
+                        <div className="w-36 h-10 bg-zinc-800 rounded-md" />
+                        <div className="w-36 h-10 bg-zinc-800 rounded-md" />
+                    </div>
+                </div>
+
+                <div className="flex justify-center">
+                    <div className="w-60 h-60 md:w-80 md:h-80 bg-zinc-800 rounded-full border-2 border-zinc-700" />
+                </div>
+
+                <div className="flex flex-col items-center">
+                    <div className="w-24 h-6 bg-zinc-800 rounded-md mb-2" />
+                    <div className="w-6 h-6 bg-zinc-700 rounded-full" />
+                </div>
+            </motion.section>
+        );
+    }
     return (
         <motion.section
             initial={{ opacity: 0, y: -100 }}
@@ -120,7 +154,7 @@ function HeroSection() {
 
             <div>
                 <Button onClick={handleScrollProjects} variant={'ghost'} className="animate-bounce font-mono flex gap-2 items-center">
-                   Scroll <BiDownArrow /> 
+                    Scroll <BiDownArrow />
                 </Button>
             </div>
         </motion.section>

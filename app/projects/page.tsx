@@ -3,8 +3,17 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { FolderGit } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 function Projects() {
+    const [loading, setLoading] = useState<boolean>(true);
+    
+        useEffect(() => {
+            const timer = setTimeout(() => setLoading(false), 1000);
+            return () => clearTimeout(timer);
+        }, []);
+
+
     const projects = [
         {
             id: 1,
@@ -37,6 +46,53 @@ function Projects() {
             link: "#",
         },
     ];
+
+    if (loading) {
+        return (
+            <section className="min-h-screen w-full flex flex-col justify-center items-center gap-16 px-6 py-24 border-b border-muted/80 animate-pulse">
+
+                <div className="text-center space-y-3">
+                    <div className="w-40 h-10 bg-zinc-800 rounded-md mx-auto" />
+                    <div className="w-72 h-4 bg-zinc-800 rounded-md mx-auto" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                        <div
+                            key={i}
+                            className="overflow-hidden border border-muted/50 bg-muted/5 p-0 rounded-xl"
+                        >
+                            <div className="h-48 w-full bg-zinc-800" />
+
+                            <div className="p-5 space-y-3">
+                                <div className="w-3/4 h-5 bg-zinc-800 rounded" />
+
+                                <div className="space-y-2">
+                                    <div className="w-full h-3 bg-zinc-800 rounded" />
+                                    <div className="w-full h-3 bg-zinc-800 rounded" />
+                                    <div className="w-5/6 h-3 bg-zinc-800 rounded" />
+                                </div>
+
+                                <div className="flex gap-2 pt-2">
+                                    {Array.from({ length: 3 }).map((_, j) => (
+                                        <div
+                                            key={j}
+                                            className="w-12 h-5 bg-zinc-800 rounded-full"
+                                        />
+                                    ))}
+                                </div>
+
+                                <div className="flex justify-between items-center pt-3 border-t border-muted/30">
+                                    <div className="w-20 h-3 bg-zinc-800 rounded" />
+                                    <div className="w-6 h-6 bg-zinc-800 rounded" />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        );
+    }
 
     return (
         <motion.section

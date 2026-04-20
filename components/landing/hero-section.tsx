@@ -95,8 +95,8 @@ function HeroSection() {
                     <span className="font-semibold">
                         Full Stack Developer
                     </span>{" "}
-                    <span className="bg-gradient-to-tr from-primary/60 to-green-400 bg-clip-text text-transparent font-thin tracking-tight">
-                        `MERN + Supabase`
+                    <span className="bg-gradient-to-tr font-medium from-primary/60 to-green-400 bg-clip-text text-transparent  tracking-tight">
+                        `MERN <span className="font-black dark:text-white text-zinc-800">+</span> Supabase`
                     </span>
                 </h1>
 
@@ -105,7 +105,7 @@ function HeroSection() {
                     secure authentication, and clean backend architecture.
                     <br /><br />
                     Specialized in building production-ready apps using Next.js, React, and modern backend tools —
-                    with strong attention to performance and user experience.
+                    with strong attention to performance and user experiencce.
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-5 items-center text-lg">

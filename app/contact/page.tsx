@@ -37,8 +37,7 @@ function Contact() {
             return
         }
 
-        setStatus("loading");
-
+        const toastId = toast.loading("Reaching out...");
 
         try {
             await emailjs.send(
@@ -51,12 +50,17 @@ function Contact() {
                 },
                 EMAILJS_PUBLIC_KEY
             );
+
+            toast.success("Message has been sent successfully", { id: toastId });
+
             setStatus("sent");
             setForm({ name: "", email: "", message: "" });
-            toast.success("Message has been sent successfully")
+
         } catch (err) {
-            alert(JSON.stringify(err));
             console.error(err);
+
+            toast.error("Failed to send message", { id: toastId });
+
             setStatus("error");
         }
     };
